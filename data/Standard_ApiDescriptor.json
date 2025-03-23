@@ -1,0 +1,909 @@
+{
+	"WdpCameraControlAPI":
+	{
+		"SetCameraMode":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "SetCameraMode",
+				"args":
+				{
+					"guid": "",
+					"controlMode": "RTS"
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"GetCameraInfo":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "GetCameraInfo",
+				"args":
+				{
+					"guid": ""
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"location": [ 0, 0, 0 ],
+					"rotation":
+					{
+						"pitch": 0,
+						"yaw": 0
+					},
+					"locationLimit": [],
+					"pitchLimit": [ -90, 0 ],
+					"yawLimit": [ -180, 180 ],
+					"viewDistanceLimit": [ 1, 2000 ],
+					"controlMode": "RTS",
+					"fieldOfView": 60,
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"UpdateCamera":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "UpdateCamera",
+				"args":
+				{
+					"guid": "",
+					"location": [ 0, 0, 0 ],
+					"rotation":
+					{
+						"pitch": 0,
+						"yaw": 0
+					},
+					"locationLimit": [],
+					"pitchLimit": [ -90, 0 ],
+					"yawLimit": [ -180, 180 ],
+					"viewDistanceLimit": [ 1, 2000 ],
+					"controlMode": "RTS",
+					"fieldOfView": 60,
+					"flyTime": 0
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			},
+			"ApiFlags": [
+				"optional paratemers"
+			]
+		},
+		"GetCameraPose":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "GetCameraPose",
+				"args":
+				{
+					"guid": ""
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"location": [ 0, 0, 0 ],
+					"rotation":
+					{
+						"pitch": 0,
+						"yaw": 0
+					},
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"SetCameraPose":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "SetCameraPose",
+				"args":
+				{
+					"guid": "",
+					"location": [ 0, 0, 0 ],
+					"rotation":
+					{
+						"pitch": 0,
+						"yaw": 0
+					},
+					"flyTime": 0
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			},
+			"ApiFlags": [
+				"optional paratemers"
+			]
+		},
+		"ResetCameraPose":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "ResetCameraPose",
+				"args":
+				{
+					"guid": "",
+					"state": "Default",
+					"flyTime": 0
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"GetCameraLimit":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "GetCameraLimit",
+				"args":
+				{
+					"guid": ""
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"locationLimit": [],
+					"pitchLimit": [ -90, 0 ],
+					"yawLimit": [ -180, 180 ],
+					"viewDistanceLimit": [ 1, 2000000 ],
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"SetCameraLimit":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "SetCameraLimit",
+				"args":
+				{
+					"guid": "",
+					"locationLimit": [],
+					"pitchLimit": [ -90, 0 ],
+					"yawLimit": [ -180, 180 ],
+					"viewDistanceLimit": [ 1, 2000000 ]
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			},
+			"ApiFlags": [
+				"optional paratemers"
+			]
+		},
+		"SetCameraLockLimit":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "SetCameraLockLimit",
+				"args":
+				{
+					"guid": "",
+					"locationLimit": 10,
+					"pitchLimit": 10,
+					"yawLimit": 10,
+					"viewDistanceLimit": 1000
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			},
+			"ApiFlags": [
+				"optional paratemers"
+			]
+		},
+		"ResetCameraLimit":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "ResetCameraLimit",
+				"args":
+				{
+					"guid": "",
+					"state": "Default"
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"CameraMove":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "CameraMove",
+				"args":
+				{
+					"guid": "",
+					"direction": "",
+					"velocity": 0.98765099048614502
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"CameraRotate":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "CameraRotate",
+				"args":
+				{
+					"guid": "",
+					"direction": "",
+					"velocity": 0.98765099048614502
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"CameraAround":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "CameraAround",
+				"args":
+				{
+					"guid": "",
+					"direction": "clockwise",
+					"velocity": 10
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"CameraStepMove":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "CameraStepMove",
+				"args":
+				{
+					"guid": "",
+					"moveDirection": "E_Forward",
+					"step": 0.10000000149011612,
+					"bContinuous": false
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"CameraStepRotate":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "CameraStepRotate",
+				"args":
+				{
+					"guid": "",
+					"rotateDirection": "E_Pitch",
+					"step": 0.10000000149011612,
+					"bContinuous": false
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"CameraStepZoom":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "CameraStepZoom",
+				"args":
+				{
+					"guid": "",
+					"step": 0.10000000149011612,
+					"bContinuous": false
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"StopCameraStepUpdate":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "StopCameraStepUpdate",
+				"args":
+				{
+					"guid": ""
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"FocusToPosition":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "FocusToPosition",
+				"args":
+				{
+					"guid": "",
+					"targetPosition": [ 0, 0, 0 ],
+					"rotation":
+					{
+						"pitch": -30,
+						"yaw": 0
+					},
+					"distance": 10,
+					"flyTime": 1
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			},
+			"ApiFlags": [
+				"optional paratemers"
+			]
+		},
+		"FocusToEntities":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "FocusToEntities",
+				"args":
+				{
+					"guid": "",
+					"rotation":
+					{
+						"pitch": -30,
+						"yaw": 0
+					},
+					"distanceFactor": 1,
+					"flyTime": 1,
+					"eids": []
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			},
+			"ApiFlags": [
+				"optional paratemers"
+			]
+		},
+		"FocusToNodes":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "FocusToNodes",
+				"args":
+				{
+					"guid": "",
+					"aesTilesEid": "0",
+					"nodeIds": [],
+					"rotation":
+					{
+						"pitch": -30,
+						"yaw": 0
+					},
+					"distanceFactor": 1,
+					"flyTime": 1
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			},
+			"ApiFlags": [
+				"optional paratemers"
+			]
+		},
+		"FollowEntity":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "FollowEntity",
+				"args":
+				{
+					"guid": "",
+					"followRotation":
+					{
+						"pitch": -30,
+						"yaw": 0
+					},
+					"useRelativeRotation": false,
+					"distance": 1000,
+					"eid": "0"
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"FocusToAllEntities":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "FocusToAllEntities",
+				"args":
+				{
+					"guid": "",
+					"entityTypes": [],
+					"bFilterForExclude": false
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"CameraStop":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "CameraStop",
+				"args":
+				{
+					"guid": ""
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"PlayCameraRoam":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "PlayCameraRoam",
+				"args":
+				{
+					"guid": "",
+					"cameraRoamEid": "0",
+					"state": "Play",
+					"progressRatio": 0,
+					"speedRatio": 0,
+					"bReverse": false
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			},
+			"ApiFlags": [
+				"optional paratemers"
+			]
+		},
+		"ApplyCameraPreset":
+		{
+			"ApiParams":
+			{
+				"apiClassName": "WdpCameraControlAPI",
+				"apiFuncName": "ApplyCameraPreset",
+				"args":
+				{
+					"guid": "",
+					"flyTime": 1,
+					"eid": "0"
+				}
+			},
+			"ApiResult":
+			{
+				"type": 0,
+				"guid": "",
+				"success": false,
+				"message": "",
+				"result":
+				{
+					"sceneChangeInfo":
+					{
+						"addedEids": [],
+						"removedEids": [],
+						"updateInfo":
+						{
+						}
+					}
+				}
+			}
+		},
+		"OnCameraMotionStartEvent":
+		{
+			"type": 1,
+			"event_name": "OnCameraMotionStartEvent",
+			"args":
+			{
+				"cameraMotionReason": ""
+			}
+		},
+		"OnCameraMotionEndEvent":
+		{
+			"type": 1,
+			"event_name": "OnCameraMotionEndEvent",
+			"args":
+			{
+				"cameraMotionReason": "",
+				"eids": []
+			}
+		}
+	}
+	
+}
