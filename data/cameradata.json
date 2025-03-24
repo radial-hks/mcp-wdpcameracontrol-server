@@ -1,0 +1,24 @@
+{
+	"type": 0,
+	"guid": "",
+	"success": false,
+	"message": "",
+	"result": {
+		"location": [0, 0, 0],
+		"rotation": {
+			"pitch": 0,
+			"yaw": 0
+		},
+		"locationLimit": [],
+		"pitchLimit": [ -90, 0],
+		"yawLimit": [ -180, 180],
+		"viewDistanceLimit": [1, 2000],
+		"controlMode": "RTS",
+		"fieldOfView": 60,
+		"sceneChangeInfo": {
+			"addedEids": [],
+			"removedEids": [],
+			"updateInfo": {}
+		}
+	}
+}

@@ -393,7 +393,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }]
       };
     }
-    
     case "send_message": {
       const message = String(request.params.arguments?.message);
       if (!message) {
@@ -538,6 +537,10 @@ server.setRequestHandler(ListPromptsRequestSchema, async () => {
       {
         name: "summarize_notes",
         description: "Summarize all notes",
+      },
+      {
+        name: "get_camera_info",
+        description: "Get camera information and status"
       }
     ]
   };
