@@ -515,14 +515,15 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         apiClassName: "WdpCameraControlAPI",
         apiFuncName: "UpdateCamera",
         args: {
-          guid: params.guid || "",
+          guid: "",
           location: params.location || [0, 0, 0],
           rotation: params.rotation || { pitch: 0, yaw: 0 },
           locationLimit: params.locationLimit || [],
           pitchLimit: params.pitchLimit || [-90, 0],
           yawLimit: params.yawLimit || [-180, 180],
           viewDistanceLimit: params.viewDistanceLimit || [1, 2000],
-          controlMode: params.controlMode || "RTS",
+          // controlMode: params.controlMode || "RTS",
+          controlMode:"RTS",
           fieldOfView: params.fieldOfView || 60,
           flyTime: params.flyTime || 0
         }
