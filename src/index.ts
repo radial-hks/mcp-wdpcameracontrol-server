@@ -62,35 +62,109 @@ interface CameraData {
   flyTime: number;
 }
 
-const CameraDatas:{[id:string]:CameraData} = {
-  "QT":{
-    location: [0, 0, 50],
-    locationLimit: [],
-    rotation: {
-      pitch: -30,
-      yaw: 0
+/** Camera data information interface
+ * Contains camera name, description and its configuration data
+ */
+interface CameraDataInfo {
+  /** Camera view name */
+  Name: String;
+  /** Description of the camera view */
+  Description: String;
+  /** Camera configuration data */
+  CameraData: CameraData;
+}
+
+const CameraDatas: {[id:string]: CameraDataInfo} = {
+    "Reception": {
+        Name: "Reception",
+        Description: "前台区域视角",
+        CameraData: {
+            location: [1.28, -23.57, 6.03],
+            locationLimit: [],
+            rotation: {
+                pitch: -23.36,
+                yaw: 47.04
+            },
+            pitchLimit: [-89, -3],
+            yawLimit: [-180, 180],
+            viewDistanceLimit: [1, 12000000],
+            fieldOfView: 90,
+            controlMode: "RTS",
+            flyTime: 1
+        }
     },
-    pitchLimit: [-90, 0],
-    yawLimit: [-180, 180],
-    viewDistanceLimit: [500, 600],
-    fieldOfView: 90,
-    controlMode: "RTS",
-    flyTime: 1
-  },
-  "BGQ":{
-    location: [0, 0, 50],
-    locationLimit: [],
-    rotation: {
-      pitch: -30,
-      yaw: 0
+    "ConferenceRoom1": {
+        Name: "ConferenceRoom1",
+        Description: "会议室视角",
+        CameraData: {
+            location: [14.172, -22.326, 5.850],
+            locationLimit: [],
+            rotation: {
+                pitch: -41.573,
+                yaw: 22.409
+            },
+            pitchLimit: [-89, -3],
+            yawLimit: [-180, 180],
+            viewDistanceLimit: [1, 12000000],
+            fieldOfView: 90,
+            controlMode: "RTS",
+            flyTime: 1
+        }
     },
-    pitchLimit: [-90, 0],
-    yawLimit: [-180, 180],
-    viewDistanceLimit: [500, 600],
-    fieldOfView: 90,
-    controlMode: "FPS",
-    flyTime: 1
-  },
+    "Inception": {
+        Name: "Inception",
+        Description: "接待区视角",
+        CameraData: {
+            location: [12.99, -20.97, 6.10],
+            locationLimit: [],
+            rotation: {
+                pitch: -27.77,
+                yaw: 88.94
+            },
+            pitchLimit: [-89, -3],
+            yawLimit: [-180, 180],
+            viewDistanceLimit: [1, 12000000],
+            fieldOfView: 90,
+            controlMode: "RTS",
+            flyTime: 1
+        }
+    },
+    "Restspace": {
+        Name: "Restspace",
+        Description: "休息区视角",
+        CameraData: {
+            location: [20.577, -17.613, 6.007],
+            locationLimit: [],
+            rotation: {
+                pitch: -41.328,
+                yaw: 71.930
+            },
+            pitchLimit: [-89, -3],
+            yawLimit: [-180, 180],
+            viewDistanceLimit: [1, 12000000],
+            fieldOfView: 90,
+            controlMode: "RTS",
+            flyTime: 1
+        }
+    },
+    "Workspace": {
+        Name: "Workspace",
+        Description: "工作区视角",
+        CameraData: {
+            location: [17.25066381524492,-10.084610787935528,5.433206962757891],
+            rotation: {
+                pitch: -39.981536865234375,
+                yaw: -122.5937728881836
+            },
+            locationLimit: [],
+            pitchLimit: [-89, -3],
+            yawLimit: [-179.99998474121094, 179.99998474121094],
+            viewDistanceLimit: [1, 12000000],
+            controlMode: "RTS",
+            fieldOfView: 90,
+            flyTime: 1
+        }
+    }
 }
 
 /**
@@ -130,11 +204,14 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => {
     uri: `cameradata:///${id}`,
     mimeType: "application/json",
     name: `Camera: ${id}`,
-    description: `Camera configuration for ${id} with ${cameraData.controlMode} mode`,
+    description: `Camera configuration for ${id} with ${cameraData.Description} mode`,
     metadata: {
-      controlMode: cameraData.controlMode,
-      location: cameraData.location,
-      fieldOfView: cameraData.fieldOfView
+      controlMode: cameraData.CameraData.controlMode,
+      location: cameraData.CameraData.location,
+      fieldOfView: cameraData.CameraData.fieldOfView,
+      rotation: cameraData.CameraData.rotation,
+      pitchLimit: cameraData.CameraData.pitchLimit,
+      yawLimit: cameraData.CameraData.yawLimit,
     }
   }));
 
