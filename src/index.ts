@@ -74,97 +74,97 @@ interface CameraDataInfo {
   CameraData: CameraData;
 }
 
-const CameraDatas: {[id:string]: CameraDataInfo} = {
-    "Reception": {
-        Name: "Reception",
-        Description: "前台区域视角",
-        CameraData: {
-            location: [1.28, -23.57, 6.03],
-            locationLimit: [],
-            rotation: {
-                pitch: -23.36,
-                yaw: 47.04
-            },
-            pitchLimit: [-89, -3],
-            yawLimit: [-180, 180],
-            viewDistanceLimit: [1, 12000000],
-            fieldOfView: 90,
-            controlMode: "RTS",
-            flyTime: 1
-        }
-    },
-    "ConferenceRoom1": {
-        Name: "ConferenceRoom1",
-        Description: "会议室视角",
-        CameraData: {
-            location: [14.172, -22.326, 5.850],
-            locationLimit: [],
-            rotation: {
-                pitch: -41.573,
-                yaw: 22.409
-            },
-            pitchLimit: [-89, -3],
-            yawLimit: [-180, 180],
-            viewDistanceLimit: [1, 12000000],
-            fieldOfView: 90,
-            controlMode: "RTS",
-            flyTime: 1
-        }
-    },
-    "Inception": {
-        Name: "Inception",
-        Description: "接待区视角",
-        CameraData: {
-            location: [12.99, -20.97, 6.10],
-            locationLimit: [],
-            rotation: {
-                pitch: -27.77,
-                yaw: 88.94
-            },
-            pitchLimit: [-89, -3],
-            yawLimit: [-180, 180],
-            viewDistanceLimit: [1, 12000000],
-            fieldOfView: 90,
-            controlMode: "RTS",
-            flyTime: 1
-        }
-    },
-    "Restspace": {
-        Name: "Restspace",
-        Description: "休息区视角",
-        CameraData: {
-            location: [20.577, -17.613, 6.007],
-            locationLimit: [],
-            rotation: {
-                pitch: -41.328,
-                yaw: 71.930
-            },
-            pitchLimit: [-89, -3],
-            yawLimit: [-180, 180],
-            viewDistanceLimit: [1, 12000000],
-            fieldOfView: 90,
-            controlMode: "RTS",
-            flyTime: 1
-        }
-    },
-    "Workspace": {
-        Name: "Workspace",
-        Description: "工作区视角",
-        CameraData: {
-            location: [17.25066381524492,-10.084610787935528,5.433206962757891],
-            rotation: {
-                pitch: -39.981536865234375,
-                yaw: -122.5937728881836
-            },
-            locationLimit: [],
-            pitchLimit: [-89, -3],
-            yawLimit: [-179.99998474121094, 179.99998474121094],
-            viewDistanceLimit: [1, 12000000],
-            controlMode: "RTS",
-            fieldOfView: 90,
-            flyTime: 1
-        }
+const CameraDatas: { [id: string]: CameraDataInfo } = {
+  "Reception": {
+    Name: "Reception",
+    Description: "前台区域视角",
+    CameraData: {
+      location: [1.28, -23.57, 6.03],
+      locationLimit: [],
+      rotation: {
+        pitch: -23.36,
+        yaw: 47.04
+      },
+      pitchLimit: [-89, -3],
+      yawLimit: [-180, 180],
+      viewDistanceLimit: [1, 12000000],
+      fieldOfView: 90,
+      controlMode: "RTS",
+      flyTime: 1
     }
+  },
+  "ConferenceRoom1": {
+    Name: "ConferenceRoom1",
+    Description: "会议室视角",
+    CameraData: {
+      location: [14.172, -22.326, 5.850],
+      locationLimit: [],
+      rotation: {
+        pitch: -41.573,
+        yaw: 22.409
+      },
+      pitchLimit: [-89, -3],
+      yawLimit: [-180, 180],
+      viewDistanceLimit: [1, 12000000],
+      fieldOfView: 90,
+      controlMode: "RTS",
+      flyTime: 1
+    }
+  },
+  "Inception": {
+    Name: "Inception",
+    Description: "接待区视角",
+    CameraData: {
+      location: [12.99, -20.97, 6.10],
+      locationLimit: [],
+      rotation: {
+        pitch: -27.77,
+        yaw: 88.94
+      },
+      pitchLimit: [-89, -3],
+      yawLimit: [-180, 180],
+      viewDistanceLimit: [1, 12000000],
+      fieldOfView: 90,
+      controlMode: "RTS",
+      flyTime: 1
+    }
+  },
+  "Restspace": {
+    Name: "Restspace",
+    Description: "休息区视角",
+    CameraData: {
+      location: [20.577, -17.613, 6.007],
+      locationLimit: [],
+      rotation: {
+        pitch: -41.328,
+        yaw: 71.930
+      },
+      pitchLimit: [-89, -3],
+      yawLimit: [-180, 180],
+      viewDistanceLimit: [1, 12000000],
+      fieldOfView: 90,
+      controlMode: "RTS",
+      flyTime: 1
+    }
+  },
+  "Workspace": {
+    Name: "Workspace",
+    Description: "工作区视角",
+    CameraData: {
+      location: [17.25066381524492, -10.084610787935528, 5.433206962757891],
+      rotation: {
+        pitch: -39.981536865234375,
+        yaw: -122.5937728881836
+      },
+      locationLimit: [],
+      pitchLimit: [-89, -3],
+      yawLimit: [-179.99998474121094, 179.99998474121094],
+      viewDistanceLimit: [1, 12000000],
+      controlMode: "RTS",
+      fieldOfView: 90,
+      flyTime: 1
+    }
+  }
 }
 
 /**
@@ -270,19 +270,19 @@ let wsClient: WebSocket | null = null;
 // 在现有notes定义后添加
 const connectWebSocket = () => {
   wsClient = new WebSocket('ws://localhost:5151');
-  
+
   wsClient.on('open', () => {
     console.log('Connected to WebSocket server');
   });
-  
+
   wsClient.on('message', (data) => {
     console.log('Received:', data.toString());
   });
-  
+
   wsClient.on('error', (error) => {
     console.error('WebSocket error:', error);
   });
-  
+
   wsClient.on('close', () => {
     console.log('Disconnected from WebSocket server');
     // 尝试重连
@@ -328,18 +328,29 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         }
       },
       {
+        name: "camera_stop",
+        description: "Stop camera movement",
+        inputSchema: {
+          type: "object",
+          properties: {
+            guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" }
+          },
+          required: []
+        }
+      },
+      {
         name: "update_camera",
         description: "Update camera parameters and control settings",
         inputSchema: {
           type: "object",
           properties: {
-            guid: { type: "string", description: "Camera GUID" },
-            location: { 
+            guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" },
+            location: {
               type: "array",
               items: { type: "number" },
               minItems: 3,
               maxItems: 3,
-              description: "Camera location coordinates [x, y, z]" 
+              description: "Camera location coordinates [x, y, z]"
             },
             rotation: {
               type: "object",
@@ -383,16 +394,46 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         }
       },
       {
-        name: "set_camera_mode",
-        description: "Set camera control mode",
+        name: "camera_around",
+        description: "Control camera movement in a circular motion",
         inputSchema: {
           type: "object",
           properties: {
-            controlMode: { type: "string", description: "Camera control mode" }
+            guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" },
+            direction: { type: "string", description: "Movement direction (clockwise or anticlockwise)", enum: ["clockwise", "anticlockwise"] },
+            velocity: { type: "number", description: "Movement speed in meters per second" }
           },
-          required: ["controlMode"]
+          required: ["direction", "velocity"]
         }
-      }
+      },
+      {
+        name: "camera_rotate",
+        description: "Control camera rotation movement",
+        inputSchema: {
+          type: "object",
+          properties: {
+            guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" },
+            direction: { type: "string", description: "Movement direction", enum: ["forward", "backward", "left", "right", "up", "down"] },
+            velocity: { type: "number", description: "Movement speed in meters per second" }
+          },
+          required: ["direction", "velocity"]
+        }
+      },
+      {
+        name: "camera_move",
+        description: "Control camera movement in different directions",
+        inputSchema: {
+          type: "object",
+          properties: {
+            guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" },
+            direction: { type: "string", description: "Movement direction", enum: ["forward", "backward", "left", "right", "up", "down"] },
+            velocity: { type: "number", description: "Movement speed in meters per second" }
+          },
+          required: ["direction", "velocity"]
+        }
+      },
+      { name: "set_camera_mode", description: "Set camera control mode", inputSchema: { type: "object", properties: { controlMode: { type: "string", description: "Camera control mode,RTS (飞行模式),FPS (第一人称模式),TPS (第三人称模式)" } }, required: ["controlMode"] } },
+      { name: "focus_to_position", description: "Focus camera to a specific position", inputSchema: { type: "object", properties: { guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" }, targetPosition: { type: "array", items: { type: "number" }, minItems: 3, maxItems: 3, description: "Target position coordinates [x, y, z]" }, rotation: { type: "object", properties: { pitch: { type: "number", description: "Camera pitch angle", default: -30 }, yaw: { type: "number", description: "Camera yaw angle", default: 0 } } }, distance: { type: "number", description: "Distance from target position", default: 10 }, flyTime: { type: "number", description: "Camera fly time in seconds", default: 1 } }, required: ["targetPosition"] } }
     ]
   };
 });
@@ -405,7 +446,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   switch (request.params.name) {
     case "set_camera_mode": {
       const { controlMode } = request.params.arguments as { controlMode: string };
-      
+
       if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
         connectWebSocket();
         await new Promise(resolve => setTimeout(resolve, 1000));
@@ -416,11 +457,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }
 
       const message = {
-          apiClassName: "WdpCameraControlAPI",
-          apiFuncName: "SetCameraMode",
-          args: {
-            controlMode: controlMode
-          }
+        apiClassName: "WdpCameraControlAPI",
+        apiFuncName: "SetCameraMode",
+        args: {
+          controlMode: controlMode
+        }
       };
 
       // 使用Promise包装WebSocket通信,增加错误处理和超时控制
@@ -430,14 +471,14 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             reject(error);
             return;
           }
-          
+
           // 等待服务器响应
           wsClient?.once('message', (response) => {
             try {
               const result = JSON.parse(response.toString());
               resolve({
                 content: [{
-                  type: "text", 
+                  type: "text",
                   text: `Camera mode set successfully: ${JSON.stringify(result)}`
                 }]
               });
@@ -445,7 +486,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
               reject(new Error("Invalid response format"));
             }
           });
-          
+
           // 设置5秒超时
           setTimeout(() => {
             reject(new Error("Camera mode setting timeout"));
@@ -475,7 +516,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       if (!message) {
         throw new Error("Message is required");
       }
-      
+
       if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
         throw new Error("WebSocket is not connected");
       }
@@ -486,7 +527,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             reject(error);
             return;
           }
-          
+
           // 等待服务器响应
           wsClient?.once('message', (response) => {
             resolve({
@@ -496,7 +537,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
               }]
             });
           });
-          
+
           // 设置超时
           setTimeout(() => {
             reject(new Error("Server response timeout"));
@@ -522,8 +563,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           pitchLimit: params.pitchLimit || [-90, 0],
           yawLimit: params.yawLimit || [-180, 180],
           viewDistanceLimit: params.viewDistanceLimit || [1, 2000],
-          // controlMode: params.controlMode || "RTS",
-          controlMode:"RTS",
+          controlMode: params.controlMode || "RTS",
+          // controlMode:"RTS",
           fieldOfView: params.fieldOfView || 60,
           flyTime: params.flyTime || 0
         }
@@ -539,7 +580,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             reject(error);
             return;
           }
-          
+
           wsClient?.once('message', (response) => {
             try {
               const result = JSON.parse(response.toString());
@@ -553,13 +594,209 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
               reject(new Error("Invalid response format"));
             }
           });
-          
+
           setTimeout(() => {
             reject(new Error("Camera update timeout"));
           }, 5000);
         });
       });
     }
+    case "camera_around": {
+      const { direction, velocity } = request.params.arguments as { direction: string, velocity: number };
+
+      if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+        connectWebSocket();
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+
+      if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+        throw new Error("WebSocket connection failed");
+      }
+
+      const message = {
+        apiClassName: "WdpCameraControlAPI",
+        apiFuncName: "CameraAround",
+        args: {
+          guid: "",
+          direction,
+          velocity
+        }
+      };
+
+      return new Promise((resolve, reject) => {
+        wsClient?.send(JSON.stringify(message), (error) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+
+          wsClient?.once('message', (response) => {
+            try {
+              const result = JSON.parse(response.toString());
+              resolve({
+                content: [{
+                  type: "text",
+                  text: JSON.stringify(result)
+                }]
+              });
+            } catch (e) {
+              reject(new Error("Invalid response format"));
+            }
+          });
+
+          setTimeout(() => {
+            reject(new Error("Camera around operation timeout"));
+          }, 5000);
+        });
+      });
+    }
+
+    case "camera_stop": {
+      if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+        connectWebSocket();
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+
+      if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+        throw new Error("WebSocket connection failed");
+      }
+
+      const message = {
+        apiClassName: "WdpCameraControlAPI",
+        apiFuncName: "CameraStop",
+        args: {
+          guid: ""
+        }
+      };
+
+      return new Promise((resolve, reject) => {
+        wsClient?.send(JSON.stringify(message), (error) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+
+          wsClient?.once('message', (response) => {
+            try {
+              const result = JSON.parse(response.toString());
+              resolve({
+                content: [{
+                  type: "text",
+                  text: JSON.stringify(result)
+                }]
+              });
+            } catch (e) {
+              reject(new Error("Invalid response format"));
+            }
+          });
+
+          setTimeout(() => {
+            reject(new Error("Camera stop operation timeout"));
+          }, 5000);
+        });
+      });
+    }
+
+    case "camera_rotate": {
+      const { direction, velocity } = request.params.arguments as { direction: string, velocity: number };
+
+      if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+        connectWebSocket();
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+
+      if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+        throw new Error("WebSocket connection failed");
+      }
+
+      const message = {
+        apiClassName: "WdpCameraControlAPI",
+        apiFuncName: "CameraRotate",
+        args: {
+          guid: "",
+          direction,
+          velocity
+        }
+      };
+
+      return new Promise((resolve, reject) => {
+        wsClient?.send(JSON.stringify(message), (error) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+
+          wsClient?.once('message', (response) => {
+            try {
+              const result = JSON.parse(response.toString());
+              resolve({
+                content: [{
+                  type: "text",
+                  text: JSON.stringify(result)
+                }]
+              });
+            } catch (e) {
+              reject(new Error("Invalid response format"));
+            }
+          });
+
+          setTimeout(() => {
+            reject(new Error("Camera rotate operation timeout"));
+          }, 5000);
+        });
+      });
+    }
+
+    case "camera_move": {
+      const { direction, velocity } = request.params.arguments as { direction: string, velocity: number };
+
+      if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+        connectWebSocket();
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+
+      if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+        throw new Error("WebSocket connection failed");
+      }
+
+      const message = {
+        apiClassName: "WdpCameraControlAPI",
+        apiFuncName: "CameraRotate",
+        args: {
+          guid: "",
+          direction,
+          velocity
+        }
+      };
+
+      return new Promise((resolve, reject) => {
+        wsClient?.send(JSON.stringify(message), (error) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+
+          wsClient?.once('message', (response) => {
+            try {
+              const result = JSON.parse(response.toString());
+              resolve({
+                content: [{
+                  type: "text",
+                  text: JSON.stringify(result)
+                }]
+              });
+            } catch (e) {
+              reject(new Error("Invalid response format"));
+            }
+          });
+
+          setTimeout(() => {
+            reject(new Error("Camera rotate operation timeout"));
+          }, 5000);
+        });
+      });
+    }
+
     case "get_camera_info": {
       // const guid = String(request.params.arguments?.guid);
       // if (!guid) {
@@ -572,7 +809,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           guid: ""
         }
       };
-      if (!wsClient || wsClient.readyState!== WebSocket.OPEN) {
+      if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
         throw new Error("WebSocket is not connected");
       }
       return new Promise((resolve, reject) => {
@@ -600,6 +837,62 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         });
       });
     }
+
+    case "focus_to_position": {
+      const params = request.params.arguments;
+      if (!params || !params.targetPosition) {
+        throw new Error("Target position is required");
+      }
+
+      if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+        connectWebSocket();
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+
+      if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+        throw new Error("WebSocket connection failed");
+      }
+
+      const message = {
+        apiClassName: "WdpCameraControlAPI",
+        apiFuncName: "FocusToPosition",
+        args: {
+          guid: params.guid || "",
+          targetPosition: params.targetPosition,
+          rotation: params.rotation || { pitch: -30, yaw: 0 },
+          distance: params.distance || 10,
+          flyTime: params.flyTime || 1
+        }
+      };
+
+      return new Promise((resolve, reject) => {
+        wsClient?.send(JSON.stringify(message), (error) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+
+          wsClient?.once('message', (response) => {
+            try {
+              const result = JSON.parse(response.toString());
+              resolve({
+                content: [{
+                  type: "text",
+                  text: JSON.stringify(result)
+                }]
+              });
+            } catch (e) {
+              reject(new Error("Invalid response format"));
+            }
+          });
+
+          setTimeout(() => {
+            reject(new Error("Focus to position operation timeout"));
+          }, 5000);
+        });
+      });
+    }
+
     default:
       throw new Error("Unknown tool");
   }
