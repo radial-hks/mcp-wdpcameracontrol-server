@@ -77,13 +77,13 @@ interface CameraDataInfo {
 const CameraDatas: { [id: string]: CameraDataInfo } = {
   "Reception": {
     Name: "Reception",
-    Description: "前台区域视角",
+    Description: "前台区域视角，前台人员的办公区域",
     CameraData: {
-      location: [1.28, -23.57, 6.03],
+      location: [7.32, -26.25, 5.86],
       locationLimit: [],
       rotation: {
-        pitch: -23.36,
-        yaw: 47.04
+        pitch: -24.63,
+        yaw: 3.65
       },
       pitchLimit: [-89, -3],
       yawLimit: [-180, 180],
@@ -113,7 +113,7 @@ const CameraDatas: { [id: string]: CameraDataInfo } = {
   },
   "Inception": {
     Name: "Inception",
-    Description: "接待区视角",
+    Description: "接待区视角，盗梦空间",
     CameraData: {
       location: [12.99, -20.97, 6.10],
       locationLimit: [],
@@ -340,7 +340,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       {
         name: "update_camera",
-        description: "Update camera parameters and control settings",
+        description: "Update the camera's view area, comprehensively adjust all camera parameters and control settings, including but not limited to position, rotation, field of view (FOV), cropping distance, etc., suitable for scenes that require a one-time comprehensive adjustment of the camera view.",
         inputSchema: {
           type: "object",
           properties: {
@@ -433,7 +433,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         }
       },
       { name: "set_camera_mode", description: "Set camera control mode", inputSchema: { type: "object", properties: { controlMode: { type: "string", description: "Camera control mode,RTS (飞行模式),FPS (第一人称模式),TPS (第三人称模式)" } }, required: ["controlMode"] } },
-      { name: "focus_to_position", description: "Focus camera to a specific position", inputSchema: { type: "object", properties: { guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" }, targetPosition: { type: "array", items: { type: "number" }, minItems: 3, maxItems: 3, description: "Target position coordinates [x, y, z]" }, rotation: { type: "object", properties: { pitch: { type: "number", description: "Camera pitch angle", default: -30 }, yaw: { type: "number", description: "Camera yaw angle", default: 0 } } }, distance: { type: "number", description: "Distance from target position", default: 10 }, flyTime: { type: "number", description: "Camera fly time in seconds", default: 1 } }, required: ["targetPosition"] } }
+      { name: "focus_to_position", description: "Focusing the camera's perspective to a specified position, only updating the camera's spatial coordinates (position), without affecting the camera's rotation, field of view, or other control parameters, suitable for scenes where the camera position needs to be adjusted separately without changing other settings.", inputSchema: { type: "object", properties: { guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" }, targetPosition: { type: "array", items: { type: "number" }, minItems: 3, maxItems: 3, description: "Target position coordinates [x, y, z]" }, rotation: { type: "object", properties: { pitch: { type: "number", description: "Camera pitch angle", default: -30 }, yaw: { type: "number", description: "Camera yaw angle", default: 0 } } }, distance: { type: "number", description: "Distance from target position", default: 10 }, flyTime: { type: "number", description: "Camera fly time in seconds", default: 1 } }, required: ["targetPosition"] } }
     ]
   };
 });

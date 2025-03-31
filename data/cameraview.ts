@@ -41,13 +41,13 @@ interface CameraDataInfo {
 const CameraDatas: {[id:string]: CameraDataInfo} = {
     "Reception": {
         Name: "Reception",
-        Description: "前台区域视角",
+        Description: " 前台区域视角，前台人员的办公区域",
         CameraData: {
-            location: [1.28, -23.57, 6.03],
+            location: [7.32, -26.25, 5.86],
             locationLimit: [],
             rotation: {
-                pitch: -23.36,
-                yaw: 47.04
+                pitch: -24.63,
+                yaw: 3.65
             },
             pitchLimit: [-89, -3],
             yawLimit: [-180, 180],
@@ -77,7 +77,7 @@ const CameraDatas: {[id:string]: CameraDataInfo} = {
     },
     "Inception": {
         Name: "Inception",
-        Description: "接待区视角",
+        Description: "接待区视角，盗梦空间",
         CameraData: {
             location: [12.99, -20.97, 6.10],
             locationLimit: [],
