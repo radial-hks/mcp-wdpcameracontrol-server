@@ -128,5 +128,23 @@ const CameraDatas: {[id:string]: CameraDataInfo} = {
             fieldOfView: 90,
             flyTime: 1
         }
+    },
+    "Cubevisual": {
+        Name: "Cubevisual",
+        Description: "圆锥体视角",
+        CameraData: {
+            location: [8.17, -27.69, 6.25],
+            locationLimit: [],
+            rotation: {
+                pitch: -3,
+                yaw: -10.41
+            },
+            pitchLimit: [-89, -3],
+            yawLimit: [-180, 180],
+            viewDistanceLimit: [1, 12000000],
+            fieldOfView: 90,
+            controlMode: "RTS",
+            flyTime: 1
+        }
     }
-}
+} 

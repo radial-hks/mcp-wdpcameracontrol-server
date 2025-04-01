@@ -164,6 +164,24 @@ const CameraDatas: { [id: string]: CameraDataInfo } = {
       fieldOfView: 90,
       flyTime: 1
     }
+  },
+  "Cubevisual": {
+    Name: "Cubevisual",
+    Description: "圆锥体视角",
+    CameraData: {
+      location: [8.17, -27.69, 6.25],
+      locationLimit: [],
+      rotation: {
+        pitch: -3,
+        yaw: -10.41
+      },
+      pitchLimit: [-89, -3],
+      yawLimit: [-180, 180],
+      viewDistanceLimit: [1, 12000000],
+      fieldOfView: 90,
+      controlMode: "RTS",
+      flyTime: 1
+    }
   }
 }
 
@@ -300,10 +318,13 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           type: "object",
           properties: {
             title: { type: "string", description: "Title of the note" },
-            content: { type: "string", description: "Text content of the note" }
+            content: {
+              type: "string",
+              description: "Text content of the note",
+            },
           },
-          required: ["title", "content"]
-        }
+          required: ["title", "content"],
+        },
       },
       {
         name: "get_camera_info",
@@ -311,10 +332,10 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         inputSchema: {
           type: "object",
           properties: {
-            guid: { type: "string", description: "Camera GUID" }
+            guid: { type: "string", description: "Camera GUID" },
           },
-          required: []
-        }
+          required: [],
+        },
       },
       {
         name: "send_message",
@@ -322,10 +343,10 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         inputSchema: {
           type: "object",
           properties: {
-            message: { type: "string", description: "Message to send" }
+            message: { type: "string", description: "Message to send" },
           },
-          required: ["message"]
-        }
+          required: ["message"],
+        },
       },
       {
         name: "camera_stop",
@@ -333,91 +354,121 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         inputSchema: {
           type: "object",
           properties: {
-            guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" }
+            guid: {
+              type: "string",
+              description: "Camera GUID (optional, defaults to empty string)",
+            },
           },
-          required: []
-        }
+          required: [],
+        },
       },
       {
         name: "update_camera",
-        description: "Update the camera's view area, comprehensively adjust all camera parameters and control settings, including but not limited to position, rotation, field of view (FOV), cropping distance, etc., suitable for scenes that require a one-time comprehensive adjustment of the camera view.",
+        description:
+          "Update the camera's view area, comprehensively adjust all camera parameters and control settings, including but not limited to position, rotation, field of view (FOV), cropping distance, etc., suitable for scenes that require a one-time comprehensive adjustment of the camera view.",
         inputSchema: {
           type: "object",
           properties: {
-            guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" },
+            guid: {
+              type: "string",
+              description: "Camera GUID (optional, defaults to empty string)",
+            },
             location: {
               type: "array",
               items: { type: "number" },
               minItems: 3,
               maxItems: 3,
-              description: "Camera location coordinates [x, y, z]"
+              description: "Camera location coordinates [x, y, z]",
             },
             rotation: {
               type: "object",
               properties: {
                 pitch: { type: "number", description: "Camera pitch angle" },
-                yaw: { type: "number", description: "Camera yaw angle" }
+                yaw: { type: "number", description: "Camera yaw angle" },
               },
-              required: ["pitch", "yaw"]
+              required: ["pitch", "yaw"],
             },
             locationLimit: {
               type: "array",
               items: { type: "number" },
-              description: "Location limits"
+              description: "Location limits",
             },
             pitchLimit: {
               type: "array",
               items: { type: "number" },
               minItems: 2,
               maxItems: 2,
-              description: "Pitch angle limits [min, max]"
+              description: "Pitch angle limits [min, max]",
             },
             yawLimit: {
               type: "array",
               items: { type: "number" },
               minItems: 2,
               maxItems: 2,
-              description: "Yaw angle limits [min, max]"
+              description: "Yaw angle limits [min, max]",
             },
             viewDistanceLimit: {
               type: "array",
               items: { type: "number" },
               minItems: 2,
               maxItems: 2,
-              description: "View distance limits [min, max]"
+              description: "View distance limits [min, max]",
             },
             controlMode: { type: "string", description: "Camera control mode" },
-            fieldOfView: { type: "number", description: "Camera field of view" },
-            flyTime: { type: "number", description: "Camera fly time" }
+            fieldOfView: {
+              type: "number",
+              description: "Camera field of view",
+            },
+            flyTime: { type: "number", description: "Camera fly time" },
           },
-          required: ["location", "rotation"]
-        }
+          required: ["location", "rotation"],
+        },
       },
       {
         name: "camera_around",
-        description: "Control camera movement in a circular motion",
+        description: "Control camera movement in a circular motion, The camera rotates around a fixed point",
         inputSchema: {
           type: "object",
           properties: {
-            guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" },
-            direction: { type: "string", description: "Movement direction (clockwise or anticlockwise)", enum: ["clockwise", "anticlockwise"] },
-            velocity: { type: "number", description: "Movement speed in meters per second" }
+            guid: {
+              type: "string",
+              description: "Camera GUID (optional, defaults to empty string)",
+            },
+            direction: {
+              type: "string",
+              description: "Movement direction (clockwise or anticlockwise)",
+              enum: ["clockwise", "anticlockwise"],
+            },
+            velocity: {
+              type: "number",
+              description: "Movement speed in meters per second",
+            },
           },
-          required: ["direction", "velocity"]
-        }
+          required: ["direction", "velocity"],
+        },
       },
       {
         name: "camera_rotate",
-        description: "Control camera rotation movement",
+        description: "Control camera rotation movement, The camera rotates itself",
         inputSchema: {
           type: "object",
           properties: {
-            guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" },
-            direction: { type: "string", description: "Movement direction", enum: ["forward", "backward", "left", "right", "up", "down"] },
-            velocity: { type: "number", description: "Movement speed in meters per second" }
+            guid: {
+              type: "string",
+              description: "Camera GUID (optional, defaults to empty string)",
+            },
+            direction: {
+              type: "string",
+              description: "Movement direction",
+              enum: ["forward", "backward", "left", "right", "up", "down"],
+            },
+            velocity: {
+              type: "number",
+              description: "Movement speed in meters per second",
+            },
           },
-          required: ["direction", "velocity"]
-        }
+          required: ["direction", "velocity"],
+        },
       },
       {
         name: "camera_move",
@@ -425,16 +476,86 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         inputSchema: {
           type: "object",
           properties: {
-            guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" },
-            direction: { type: "string", description: "Movement direction", enum: ["forward", "backward", "left", "right", "up", "down"] },
-            velocity: { type: "number", description: "Movement speed in meters per second" }
+            guid: {
+              type: "string",
+              description: "Camera GUID (optional, defaults to empty string)",
+            },
+            direction: {
+              type: "string",
+              description: "Movement direction",
+              enum: ["forward", "backward", "left", "right", "up", "down"],
+            },
+            velocity: {
+              type: "number",
+              description: "Movement speed in meters per second",
+            },
           },
-          required: ["direction", "velocity"]
-        }
+          required: ["direction", "velocity"],
+        },
       },
-      { name: "set_camera_mode", description: "Set camera control mode", inputSchema: { type: "object", properties: { controlMode: { type: "string", description: "Camera control mode,RTS (飞行模式),FPS (第一人称模式),TPS (第三人称模式)" } }, required: ["controlMode"] } },
-      { name: "focus_to_position", description: "Focusing the camera's perspective to a specified position, only updating the camera's spatial coordinates (position), without affecting the camera's rotation, field of view, or other control parameters, suitable for scenes where the camera position needs to be adjusted separately without changing other settings.", inputSchema: { type: "object", properties: { guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" }, targetPosition: { type: "array", items: { type: "number" }, minItems: 3, maxItems: 3, description: "Target position coordinates [x, y, z]" }, rotation: { type: "object", properties: { pitch: { type: "number", description: "Camera pitch angle", default: -30 }, yaw: { type: "number", description: "Camera yaw angle", default: 0 } } }, distance: { type: "number", description: "Distance from target position", default: 10 }, flyTime: { type: "number", description: "Camera fly time in seconds", default: 1 } }, required: ["targetPosition"] } }
-    ]
+      {
+        name: "set_camera_mode",
+        description: "Set camera control mode",
+        inputSchema: {
+          type: "object",
+          properties: {
+            controlMode: {
+              type: "string",
+              description:
+                "Camera control mode,RTS (飞行模式),FPS (第一人称模式),TPS (第三人称模式)",
+            },
+          },
+          required: ["controlMode"],
+        },
+      },
+      {
+        name: "focus_to_position",
+        description:
+          "Focusing the camera's perspective to a specified position, only updating the camera's spatial coordinates (position), without affecting the camera's rotation, field of view, or other control parameters, suitable for scenes where the camera position needs to be adjusted separately without changing other settings.",
+        inputSchema: {
+          type: "object",
+          properties: {
+            guid: {
+              type: "string",
+              description: "Camera GUID (optional, defaults to empty string)",
+            },
+            targetPosition: {
+              type: "array",
+              items: { type: "number" },
+              minItems: 3,
+              maxItems: 3,
+              description: "Target position coordinates [x, y, z]",
+            },
+            rotation: {
+              type: "object",
+              properties: {
+                pitch: {
+                  type: "number",
+                  description: "Camera pitch angle",
+                  default: -30,
+                },
+                yaw: {
+                  type: "number",
+                  description: "Camera yaw angle",
+                  default: 0,
+                },
+              },
+            },
+            distance: {
+              type: "number",
+              description: "Distance from target position",
+              default: 10,
+            },
+            flyTime: {
+              type: "number",
+              description: "Camera fly time in seconds",
+              default: 1,
+            },
+          },
+          required: ["targetPosition"],
+        },
+      },
+    ],
   };
 });
 
