@@ -433,7 +433,36 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         }
       },
       { name: "set_camera_mode", description: "Set camera control mode", inputSchema: { type: "object", properties: { controlMode: { type: "string", description: "Camera control mode,RTS (飞行模式),FPS (第一人称模式),TPS (第三人称模式)" } }, required: ["controlMode"] } },
-      { name: "focus_to_position", description: "Focus camera to a specific position", inputSchema: { type: "object", properties: { guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" }, targetPosition: { type: "array", items: { type: "number" }, minItems: 3, maxItems: 3, description: "Target position coordinates [x, y, z]" }, rotation: { type: "object", properties: { pitch: { type: "number", description: "Camera pitch angle", default: -30 }, yaw: { type: "number", description: "Camera yaw angle", default: 0 } } }, distance: { type: "number", description: "Distance from target position", default: 10 }, flyTime: { type: "number", description: "Camera fly time in seconds", default: 1 } }, required: ["targetPosition"] } }
+      { name: "focus_to_position", description: "Focus camera to a specific position", inputSchema: { type: "object", properties: { guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" }, targetPosition: { type: "array", items: { type: "number" }, minItems: 3, maxItems: 3, description: "Target position coordinates [x, y, z]" }, rotation: { type: "object", properties: { pitch: { type: "number", description: "Camera pitch angle", default: -30 }, yaw: { type: "number", description: "Camera yaw angle", default: 0 } } }, distance: { type: "number", description: "Distance from target position", default: 10 }, flyTime: { type: "number", description: "Camera fly time in seconds", default: 1 } }, required: ["targetPosition"] } },
+      {
+        name: "custom_camera_rotate", description: "Rotate camera with custom animation parameters using EC_CameraRotate.",
+        inputSchema:
+        {
+          type: "object",
+          properties:
+          {
+            guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" },
+            duration: { type: "number", description: "Duration of the camera rotation animation in seconds" },
+            addpitch: { type: "number", description: "Camera pitch angle" },
+            addyaw: { type: "number", description: "Camera yaw angle" },
+          }
+        },
+        required: ["pitch", "yaw"]
+      },
+      {
+        name: "custom_camera_move",
+        description: "Move camera with custom animation parameters using EC_CameraMove.",
+        inputSchema: {
+          type: "object",
+          properties: {
+            guid: { type: "string", description: "Camera GUID (optional, defaults to empty string)" },
+            moveDirection: { type: "string", enum: ["E_Forward", "E_Backward", "E_Left", "E_Right", "E_Up", "E_Down"], description: "Movement direction" },
+            moveDistance: { type: "number", default: 5.0, description: "Movement distance in meters." },
+            duration: { type: "number", default: 0.8, description: "Movement time in seconds." }
+          },
+          required: ["moveDirection"]
+        }
+      }
     ]
   };
 });
@@ -871,7 +900,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             reject(error);
             return;
           }
-
           wsClient?.once('message', (response) => {
             try {
               const result = JSON.parse(response.toString());
@@ -888,6 +916,110 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
           setTimeout(() => {
             reject(new Error("Focus to position operation timeout"));
+          }, 5000);
+        });
+      });
+    };
+    case "custom_camera_rotate": {
+      const params = request.params.arguments;
+      if (!params) {
+        throw new Error("custom_camera_rotate -> params error");
+      }
+
+      if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+        connectWebSocket();
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+
+      if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+        throw new Error("WebSocket connection failed");
+      }
+
+      const message = {
+        apiClassName: "CustomApi",
+        apiFuncName: "EC_CameraRotate",
+        args: {
+          guid: params.guid || "",
+          duration: params.duration,
+          addpitch: params.addpitch,
+          addyaw: params.addyaw,
+        }
+      };
+      return new Promise((resolve, reject) => {
+        wsClient?.send(JSON.stringify(message), (error) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+
+          wsClient?.once('message', (response) => {
+            try {
+              const result = JSON.parse(response.toString());
+              resolve({
+                content: [{
+                  type: "text",
+                  text: JSON.stringify(result)
+                }]
+              });
+            } catch (e) {
+              reject(new Error("Invalid response format"));
+            }
+          });
+          setTimeout(() => {
+            reject(new Error("custom_camera_rotate operation timeout"));
+          }, 5000);
+        });
+      });
+    };
+    case "custom_camera_move": {
+      const params = request.params.arguments;
+      if (!params) {
+        throw new Error("custom_camera_move -> parmse error");
+      }
+
+      if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+        connectWebSocket();
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+
+      if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+        throw new Error("WebSocket connection failed");
+      }
+
+      const message = {
+        apiClassName: "CustomApi",
+        apiFuncName: "EC_CameraMove",
+        args: {
+          guid: params.guid || "",
+          moveDirection: params.moveDirection,
+          moveDistance: params.moveDistance,
+          duration: params.duration
+        }
+      };
+
+      return new Promise((resolve, reject) => {
+        wsClient?.send(JSON.stringify(message), (error) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+
+          wsClient?.once('message', (response) => {
+            try {
+              const result = JSON.parse(response.toString());
+              resolve({
+                content: [{
+                  type: "text",
+                  text: JSON.stringify(result)
+                }]
+              });
+            } catch (e) {
+              reject(new Error("Invalid response format"));
+            }
+          });
+
+          setTimeout(() => {
+            reject(new Error("custom_camera_move operation timeout"));
           }, 5000);
         });
       });
