@@ -507,6 +507,112 @@ server.addTool({
   }
 });
 
+// 添加工具 - 自定义相机旋转 (EC_CameraRotate)
+server.addTool({
+  name: "custom_camera_rotate",
+  description: "Rotate camera with custom animation parameters using EC_CameraRotate.",
+  parameters: z.object({
+    guid: z.string().optional().describe("Camera GUID (optional, defaults to empty string)"),
+    duration: z.number().default(0.5).describe("Animation transition time in seconds."),
+    addPitch: z.number().default(0.0).describe("Pitch angle increment in degrees."),
+    addYaw: z.number().default(0.0).describe("Yaw angle increment in degrees.")
+  }),
+  execute: async (args) => {
+    if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+      connectWebSocket();
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+
+    if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+      throw new UserError("WebSocket connection failed");
+    }
+
+    const message = {
+      apiClassName: "CustomApi",
+      apiFuncName: "EC_CameraRotate",
+      args: {
+        guid: args.guid || "", // Assuming guid might be needed, though not in user's example args
+        Duration: args.duration,
+        AddPitch: args.addPitch,
+        AddYaw: args.addYaw
+      }
+    };
+    return new Promise((resolve, reject) => {
+      wsClient?.send(JSON.stringify(message), (error) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+
+        wsClient?.once('message', (response) => {
+          try {
+            const result = JSON.parse(response.toString());
+            resolve(JSON.stringify(result));
+          } catch (e) {
+            reject(new UserError("Invalid response format"));
+          }
+        });
+
+        setTimeout(() => {
+          reject(new UserError("Camera mode setting timeout"));
+        }, 5000);
+      });
+    });
+  }
+});
+
+// 添加工具 - 自定义相机移动 (EC_CameraMove)
+server.addTool({
+  name: "custom_camera_move",
+  description: "Move camera with custom animation parameters using EC_CameraMove.",
+  parameters: z.object({
+    guid: z.string().optional().describe("Camera GUID (optional, defaults to empty string)"),
+    moveDirection: z.enum(["E_Forward", "E_Backward", "E_Left", "E_Right", "E_Up", "E_Down"]).describe("Movement direction"),
+    moveDistance: z.number().default(5.0).describe("Movement distance in meters."),
+    duration: z.number().default(0.8).describe("Movement time in seconds.")
+  }),
+  execute: async (args) => {
+    if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+      connectWebSocket();
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+    if (!wsClient || wsClient.readyState !== WebSocket.OPEN) {
+      throw new UserError("WebSocket connection failed");
+    }
+    const message = {
+      apiClassName: "CustomApi",
+      apiFuncName: "EC_CameraRotate",
+      args: {
+        guid: args.guid || "",
+        MoveDirection: args.moveDirection,
+        MoveDistance: args.moveDistance,
+        Duration: args.duration
+      }
+    };
+    return new Promise((resolve, reject) => {
+      wsClient?.send(JSON.stringify(message), (error) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+
+        wsClient?.once('message', (response) => {
+          try {
+            const result = JSON.parse(response.toString());
+            resolve(JSON.stringify(result));
+          } catch (e) {
+            reject(new UserError("Invalid response format"));
+          }
+        });
+        setTimeout(() => {
+          reject(new UserError("Camera mode setting timeout"));
+        }, 5000);
+      });
+    });
+  }
+});
+
+
 /**
  * Start the server using stdio transport.
  * This allows the server to communicate via standard input/output streams.
