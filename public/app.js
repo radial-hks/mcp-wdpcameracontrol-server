@@ -58,12 +58,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
         websocket.onmessage = (event) => {
             let messageData = event.data;
+            
+            // 处理Blob类型数据
+            if (messageData instanceof Blob) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    try {
+                        // 尝试解析为JSON并美化输出
+                        const jsonStr = reader.result;
+                        const parsedJson = JSON.parse(jsonStr);
+                        messageData = JSON.stringify(parsedJson, null, 2); // 美化输出
+                    } catch (e) {
+                        // 如果不是JSON，按原样显示
+                        messageData = reader.result;
+                    }
+                    logReceivedMessage(messageData);
+                };
+                reader.readAsText(messageData);
+                return;
+            }
+            
+            // 处理文本数据
             try {
-                // Try to parse as JSON and pretty-print
+                // 尝试解析为JSON并美化输出
                 const parsedJson = JSON.parse(messageData);
-                messageData = JSON.stringify(parsedJson, null, 2); // Pretty print
+                messageData = JSON.stringify(parsedJson, null, 2); // 美化输出
             } catch (e) {
-                // If not JSON, display as is
+                // 如果不是JSON，按原样显示
             }
             logReceivedMessage(messageData);
         };
