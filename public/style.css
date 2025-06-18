@@ -150,9 +150,9 @@ button:disabled {
 }
 
 textarea {
-    width: calc(100% - 22px);
+    width: 100%;
     padding: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 0;
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     box-sizing: border-box;
@@ -167,6 +167,33 @@ textarea:focus {
     border-color: var(--primary-color);
     outline: none;
     box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+}
+
+.textarea-container {
+    position: relative;
+    margin-bottom: 15px;
+    width: calc(100% - 22px);
+}
+
+.json-validation-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.json-valid {
+    background-color: rgba(42, 157, 143, 0.2);
+    color: var(--success-color);
+}
+
+.json-invalid {
+    background-color: rgba(230, 57, 70, 0.2);
+    color: var(--secondary-color);
 }
 
 #status {

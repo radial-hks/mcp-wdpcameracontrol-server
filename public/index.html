@@ -27,8 +27,14 @@
         <div class="message-section">
             <div class="send-message">
                 <h2><i class="fas fa-paper-plane"></i> Send Message (JSON)</h2>
-                <textarea id="messageToSend" rows="5" placeholder="Enter JSON message here..."></textarea>
-                <button id="sendBtn" disabled><i class="fas fa-share"></i> Send</button>
+                <div class="textarea-container">
+                    <textarea id="messageToSend" rows="5" placeholder="Enter JSON message here..."></textarea>
+                    <div id="jsonValidationStatus" class="json-validation-status"></div>
+                </div>
+                <div class="button-group">
+                    <button id="formatJsonBtn"><i class="fas fa-indent"></i> 格式化</button>
+                    <button id="sendBtn" disabled><i class="fas fa-share"></i> Send</button>
+                </div>
             </div>
 
             <div class="received-messages">
