@@ -1,0 +1,95 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.connection-section, .message-section {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    width: calc(100% - 22px); /* Adjust for padding and border */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    margin-bottom: 5px; /* Added for better spacing on smaller screens */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#disconnectBtn {
+    background-color: #dc3545;
+}
+
+#disconnectBtn:hover {
+    background-color: #c82333;
+}
+
+textarea {
+    width: calc(100% - 22px); /* Adjust for padding and border */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: monospace; /* Good for JSON */
+}
+
+#status {
+    font-weight: bold;
+}
+
+.message-section {
+    display: flex;
+    gap: 20px; /* Space between send and received sections */
+}
+
+.send-message, .received-messages {
+    flex: 1; /* Each takes half the space */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .message-section {
+        flex-direction: column;
+    }
+
+    input[type="text"], textarea, button {
+        width: 100%; /* Full width on smaller screens */
+        margin-right: 0;
+    }
+}
