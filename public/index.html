@@ -5,30 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebSocket Client</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <h1>WebSocket Client</h1>
+    <div class="container">
+        <h1><i class="fas fa-plug"></i> WebSocket Client</h1>
 
-    <div class="connection-section">
-        <h2>Connection</h2>
-        <label for="wsUrl">WebSocket URL:</label>
-        <input type="text" id="wsUrl" value="ws://localhost:5151">
-        <button id="connectBtn">Connect</button>
-        <button id="disconnectBtn" disabled>Disconnect</button>
-        <p>Status: <span id="status">Idle</span></p>
-    </div>
-
-    <div class="message-section">
-        <div class="send-message">
-            <h2>Send Message (JSON)</h2>
-            <textarea id="messageToSend" rows="5" placeholder="Enter JSON message here..."></textarea>
-            <button id="sendBtn" disabled>Send</button>
+        <div class="connection-section">
+            <h2><i class="fas fa-network-wired"></i> Connection</h2>
+            <div class="input-group">
+                <label for="wsUrl">WebSocket URL:</label>
+                <input type="text" id="wsUrl" value="ws://localhost:5151">
+            </div>
+            <div class="button-group">
+                <button id="connectBtn"><i class="fas fa-link"></i> Connect</button>
+                <button id="disconnectBtn" disabled><i class="fas fa-unlink"></i> Disconnect</button>
+            </div>
+            <p class="status-display">Status: <span id="status">Idle</span></p>
         </div>
 
-        <div class="received-messages">
-            <h2>Received Messages</h2>
-            <textarea id="receivedMessages" rows="15" readonly placeholder="Messages from server will appear here..."></textarea>
-            <button id="clearLogBtn">Clear Log</button>
+        <div class="message-section">
+            <div class="send-message">
+                <h2><i class="fas fa-paper-plane"></i> Send Message (JSON)</h2>
+                <textarea id="messageToSend" rows="5" placeholder="Enter JSON message here..."></textarea>
+                <button id="sendBtn" disabled><i class="fas fa-share"></i> Send</button>
+            </div>
+
+            <div class="received-messages">
+                <h2><i class="fas fa-inbox"></i> Received Messages</h2>
+                <textarea id="receivedMessages" rows="15" readonly placeholder="Messages from server will appear here..."></textarea>
+                <button id="clearLogBtn"><i class="fas fa-trash"></i> Clear Log</button>
+            </div>
         </div>
     </div>
 

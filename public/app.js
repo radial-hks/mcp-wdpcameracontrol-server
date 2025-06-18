@@ -12,7 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateStatus(message, isError = false) {
         statusDisplay.textContent = message;
-        statusDisplay.style.color = isError ? 'red' : 'black';
+        
+        // 移除所有状态类
+        statusDisplay.classList.remove('status-connected', 'status-error', 'status-connecting');
+        
+        // 根据消息内容添加适当的状态类
+        if (isError) {
+            statusDisplay.classList.add('status-error');
+        } else if (message.includes('Connected to')) {
+            statusDisplay.classList.add('status-connected');
+        } else if (message.includes('Connecting')) {
+            statusDisplay.classList.add('status-connecting');
+        }
+        
         console.log(`Status: ${message}`);
     }
 
