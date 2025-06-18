@@ -1,16 +1,18 @@
 # WebSocket Client Webpage
 
-This directory contains a simple HTML, CSS, and JavaScript based WebSocket client.
-It allows you to connect to a WebSocket server, send JSON messages, and view received messages.
+This directory contains a modern HTML, CSS, and JavaScript based WebSocket client.
+It allows you to connect to a WebSocket server, send JSON messages, and view received messages with an enhanced user interface and improved JSON handling capabilities.
 
 ## Features
 
 -   Connect to a specified WebSocket server URL.
 -   Disconnect from the server.
--   Display connection status (Idle, Connecting, Connected, Disconnected, Error).
--   Text area to compose JSON messages.
--   Button to send the composed message.
--   Text area to display messages received from the server (attempts to pretty-print JSON).
+-   Display connection status (Idle, Connecting, Connected, Disconnected, Error) with color-coded visual indicators.
+-   Text area to compose JSON messages with real-time validation.
+-   Real-time JSON validation with error feedback.
+-   One-click JSON formatting button to properly indent and format JSON.
+-   Smart button state management (send button only enabled when connected and JSON is valid).
+-   Text area to display messages received from the server (automatically pretty-prints JSON).
 -   Button to clear the received messages log.
 
 ## How to Use
@@ -26,11 +28,19 @@ It allows you to connect to a WebSocket server, send JSON messages, and view rec
 3.  **Connect to the WebSocket Server:**
     *   Verify or enter the WebSocket server URL in the input field.
     *   Click the "Connect" button.
-    *   The status should update to "Connected" if successful.
+    *   The status should update to "Connected" with a green indicator if successful.
 
-4.  **Send and Receive Messages:**
+4.  **Compose and Validate JSON Messages:**
     *   Once connected, type your JSON message into the "Send Message (JSON)" text area.
-    *   Click the "Send" button.
+    *   The system will automatically validate your JSON in real-time as you type.
+    *   A validation status indicator will appear in the top-right corner of the text area:
+        * Green indicator with "格式正确" means the JSON is valid.
+        * Red indicator with an error message means the JSON is invalid.
+    *   If your JSON is not properly formatted, click the "格式化" button to automatically format it with proper indentation.
+
+5.  **Send and Receive Messages:**
+    *   The "Send" button will only be enabled when both connected to the server and the JSON is valid.
+    *   Click the "Send" button to transmit your message.
     *   Messages sent and received will appear in the "Received Messages" text area.
 
 5.  **Disconnect:**
@@ -38,6 +48,6 @@ It allows you to connect to a WebSocket server, send JSON messages, and view rec
 
 ## Files
 
--   `index.html`: The main HTML structure of the webpage.
--   `style.css`: CSS styles for the webpage.
--   `app.js`: JavaScript logic for WebSocket communication and UI interactions.
+-   `index.html`: The main HTML structure of the webpage with a modern, responsive layout.
+-   `style.css`: CSS styles for the webpage, including modern design elements, color-coded status indicators, and responsive design.
+-   `app.js`: JavaScript logic for WebSocket communication, UI interactions, real-time JSON validation, and formatting functionality.
