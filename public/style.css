@@ -1,0 +1,260 @@
+/* Modern WebSocket Client Styles */
+:root {
+    --primary-color: #4a6fa5;
+    --primary-hover: #3a5a8c;
+    --secondary-color: #e63946;
+    --secondary-hover: #c1121f;
+    --background-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --text-color: #2b2d42;
+    --border-color: #dee2e6;
+    --success-color: #2a9d8f;
+    --info-color: #457b9d;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.status-display {
+    margin-top: 15px;
+    font-size: 1.1rem;
+}
+
+i {
+    margin-right: 5px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+h2 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.connection-section, .message-section {
+    background-color: var(--card-bg);
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.connection-section:hover, .message-section:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+input[type="text"] {
+    width: calc(100% - 22px);
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+}
+
+button {
+    padding: 12px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#disconnectBtn {
+    background-color: var(--secondary-color);
+}
+
+#disconnectBtn:hover {
+    background-color: var(--secondary-hover);
+}
+
+#clearLogBtn {
+    background-color: var(--info-color);
+}
+
+#clearLogBtn:hover {
+    background-color: #3d6990;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 0;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    resize: vertical;
+    transition: var(--transition);
+}
+
+textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+}
+
+.textarea-container {
+    position: relative;
+    margin-bottom: 15px;
+    width: calc(100% - 22px);
+}
+
+.json-validation-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.json-valid {
+    background-color: rgba(42, 157, 143, 0.2);
+    color: var(--success-color);
+}
+
+.json-invalid {
+    background-color: rgba(230, 57, 70, 0.2);
+    color: var(--secondary-color);
+}
+
+#status {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    background-color: #f8f9fa;
+    border: 1px solid var(--border-color);
+}
+
+.message-section {
+    display: flex;
+    gap: 30px;
+}
+
+.send-message, .received-messages {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Status colors */
+.status-connected {
+    color: var(--success-color);
+    background-color: rgba(42, 157, 143, 0.1);
+    border-color: var(--success-color);
+}
+
+.status-error {
+    color: var(--secondary-color);
+    background-color: rgba(230, 57, 70, 0.1);
+    border-color: var(--secondary-color);
+}
+
+.status-connecting {
+    color: var(--info-color);
+    background-color: rgba(69, 123, 157, 0.1);
+    border-color: var(--info-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .message-section {
+        flex-direction: column;
+    }
+
+    input[type="text"], textarea, button {
+        width: 100%;
+        margin-right: 0;
+    }
+    
+    body {
+        padding: 10px;
+    }
+    
+    .connection-section, .message-section {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+}
